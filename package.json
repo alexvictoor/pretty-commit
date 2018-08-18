@@ -1,6 +1,9 @@
 {
   "name": "pretty-commit-msg",
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "bin": {
+    "pretty-commit-msg": "./index.js"
+  },
   "main": "index.js",
   "repository": "https://github.com/alexvictoor/pretty-commit.git",
   "author": "alexvictor <alexvictor@gmail.com>",
