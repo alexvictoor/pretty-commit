@@ -7,7 +7,6 @@ const retrieveCommits = (repoPath, lastCommitHash) => (
         .then(
             repo => repo.getMasterCommit()
         ).then(function(firstCommitOnMaster){
-            console.log('aaaaaaaaa', JSON.stringify(firstCommitOnMaster, null, 2));
             // History returns an event.
             var history = firstCommitOnMaster.history(nodegit.Revwalk.SORT.TIME);
             
@@ -16,13 +15,15 @@ const retrieveCommits = (repoPath, lastCommitHash) => (
             
             const commits = [];
             history.on("commit", function(commit) {
-                console.log('sha', commit.message());
-                lastCommitInProdFound = lastCommitInProdFound || commit.sha() === lastCommitHash;
                 if (lastCommitInProdFound) {
-                    console.log('done');
+                    return;
+                };
+                lastCommitInProdFound = lastCommitInProdFound || commit.sha() === lastCommitHash;
+                const firstRepoCommit = commit.parentcount() === 0;
+                if (lastCommitInProdFound || firstRepoCommit) {
                     resolve(commits);
                 } else {
-                    commits.push(commit);
+                    commits.push(commit.summary());
                 }
             
             });
