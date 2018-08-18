@@ -1,0 +1,12 @@
+{
+  "name": "pretty-commit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alexvictoor/pretty-commit.git",
+  "author": "alexvictor <alexvictor@gmail.com>",
+  "license": "Apache 2",
+  "dependencies": {
+    "jest": "^23.4.0",
+    "nodegit": "^0.22.1"
+  }
+}
