@@ -16,9 +16,11 @@ if (command === 'changelog') {
     
     })();
 } else {
-    console.log('-- Pretty commit ---------------------------------------------------------------------------');
+    console.log('\n-- Pretty commit ---------------------------------------------------------------------------');
     console.log('-                                                                                          -');
-    console.log('-  Usage:    npx  pretty-commit  changelog  REPO_PATH  LAST_COMMIT                         -');
+    console.log('-  Usage:    npx  create-pretty-commit changelog  REPO_PATH  LAST_COMMIT                   -');
+    console.log('-                                                                                          -');
+    console.log('-        or  yarn create pretty-commit changelog  REPO_PATH  LAST_COMMIT                   -');
     console.log('-                                                                                          -');
     console.log('--------------------------------------------------------------------------------------------');
 }
