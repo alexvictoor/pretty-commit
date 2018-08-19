@@ -1,9 +1,21 @@
 const nodegit = require('nodegit');
 const path = require('path');
+const fs = require('fs');
 
 const retrieveCommits = (repoPath, lastCommitHash) => (
-    new Promise((resolve) => (
-        nodegit.Repository.open(path.resolve(__dirname, `${repoPath}/.git`))
+    new Promise((resolve) => {
+
+        const fullPath = [ 
+            path.resolve(`${repoPath}/.git`), 
+            path.resolve(__dirname, `${repoPath}/.git`), 
+        ].find(fs.existsSync); 
+
+        if (!fullPath) {
+            console.error(`Git repository not found with path ${repoPath}`);
+            throw new Error('Incorrect command line arguments');
+        }
+
+        nodegit.Repository.open(fullPath)
         .then(
             repo => repo.getMasterCommit()
         ).then(function(firstCommitOnMaster){
@@ -31,7 +43,7 @@ const retrieveCommits = (repoPath, lastCommitHash) => (
             history.start();
         })
         .done()
-    )
+    }
 ));
 
 module.exports = retrieveCommits;
