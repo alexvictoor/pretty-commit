@@ -1,7 +1,7 @@
 const renderer = classifiedCommits => {
 
     return (
-`# Changelog
+`\n# Changelog
 ## Features
 ${renderCommits(classifiedCommits.feat)}
 ## Fixes
